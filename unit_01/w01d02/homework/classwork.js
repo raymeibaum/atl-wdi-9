@@ -8,6 +8,7 @@
 // For each expression below, indicate whether it is 'truthy' or 'falsey'
 // by assigning the appropriate variable a value of either `true` or `false`.
 
+<<<<<<< HEAD
 // 1. true || false
 //var resOne = true;
 var resOne = true;
@@ -32,31 +33,14 @@ var resFive = true;
 
 // 6. Write a `while` loop that increases `resSix` by 23 until `resSix` is five
 //    digits long. (Hint: take a look at the .toString() method)
-var resSix = 5;
-console.log(resSix.toString().length);
-
-while (resSix.toString().length < 5){
-  resSix+=23;
-}
-console.log(resSix)
+var resSix;
+// Replace This Comment With Your Code
 
 // 7. Write a `while` loop that increases `resSeven` by 12 when it's strictly
 //    below 95, decreases it by 7 when it's strictly above 105, and stops as
 //    soon as `resSeven` equals or falls between those two values.
-var resSeven = 65;
-
-do {
-  resSeven === 95 || 105; 95<resSeven< 105;
-}
-while (resSeven < 95){
-    resSeven =-7
-}
-while (resSeven > 105) {
-resSeven+=12
-}
-{
-  console.log(resSeven)
-}
+var resSeven;
+// Replace This Comment With Your Code
 
 // 8. Write a `for` loop that counts from 0 (inclusive) to 1857 (exclusive) and
 //    calculates the sum of all of those numbers, storing the result in the
@@ -73,15 +57,6 @@ console.log(resEight);
 //    `resNine`.
 var resNine;
 
-for (var j = 0; j < 1000; j++) {
-  if (i % 7 === 0) {
-    resNine += i;
-  }
-}
-console.log(resNine);
-
-// 10. Using whatever code you like, calculate n^n for each value from 1
-//     to 10 (both inclusive), and store the sum in the variable `resTen`.
 var resTen;
 
 for (var k = 1; k <= 10; k++) {
