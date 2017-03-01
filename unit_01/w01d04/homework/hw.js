@@ -21,8 +21,8 @@ var sumOfNums = function(numsArray) {
 // Output: an array of the numbers from the first array that are strictly
 //         greater (i.e. greater than but not equal to) than 10
 var numsGreaterThanTen = function(numsArray) {
-  return numsArray.filter(function(element) {
-    return element > 10;
+  return numsArray.filter(function(num) {
+    return num > 10;
   });
 };
 
@@ -32,8 +32,8 @@ var numsGreaterThanTen = function(numsArray) {
 //         `false` otherwise
 // Edge Case: If the input array is empty, the function should return `true`.
 var allGreaterThanTen = function(numsArray) {
-  return numsArray.length !== 0 ? numsArray.every(function(element) {
-    return element > 10;
+  return numsArray.length !== 0 ? numsArray.every(function(num) {
+    return num > 10;
   }) : true;
 };
 
@@ -41,8 +41,8 @@ var allGreaterThanTen = function(numsArray) {
 // Input: an array of words
 // Output: an array of all words from the first array with five or more letters
 var wordsWithAtLeastFiveLetters = function(words) {
-  return words.filter(function(element) {
-    return element.length >= 5;
+  return words.filter(function(word) {
+    return word.length >= 5;
   })
 };
 
@@ -52,8 +52,8 @@ var wordsWithAtLeastFiveLetters = function(words) {
 //          `false` otherwise
 // Edge Case: If the array is empty, the function should return `true`.
 var allStartingWithA = function(words) {
-  return words.length !== 0 ? words.every(function(element) {
-    return element.startsWith('a') || element.startsWith('A');
+  return words.length !== 0 ? words.every(function(word) {
+    return word.startsWith('a') || word.startsWith('A');
   }) : true;
 };
 
@@ -62,8 +62,8 @@ var allStartingWithA = function(words) {
 // Output: `true` if there are ANY words that start with the letter 'b'
 //          (case-insensitive), `false` otherwise
 var anyStartingWithB = function(words) {
-  return words.length !== 0 ? words.some(function(element) {
-    return element.startsWith('b') || element.startsWith('B');
+  return words.length !== 0 ? words.some(function(word) {
+    return word.startsWith('b') || word.startsWith('B');
   }) : true;
 };
 
