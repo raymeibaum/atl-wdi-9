@@ -4,9 +4,9 @@
 
 var barrels = function(small, large, total){
   var smallBarrel = 60;
-  var largeBarrel = (total - (small * smallBarrel)) / large;
+  var largeBarrelPrice = (total - (small * smallBarrel)) / large;
 
-return largeBarrel;
+return largeBarrelPrice;
 };
 
 //*************************
@@ -14,15 +14,18 @@ return largeBarrel;
 // Sailing the Seas
 
 var shipFuelCost = function(fuelPrice, milesPerGallon){
-  //your code here
+  let earthCircumferenceInMiles = 24901;
+  return (earthCircumferenceInMiles / milesPerGallon) * fuelPrice;
 };
 
 //*************************
 // Problem 3:
 // GROG
 
-var calcFruitJuice = function(a, b, c, d){
-  //your code here
+var calcFruitJuice = function(gallonsCostcoJuice, percentPureFruitJuiceCostco, gallonsKirklandJuice, percentPureFruitJuiceKirkland){
+  let totalPureFruitJuice = (gallonsCostcoJuice * (percentPureFruitJuiceCostco / 100)) + (gallonsKirklandJuice * (percentPureFruitJuiceKirkland / 100));
+  let totalJuice = gallonsCostcoJuice + gallonsKirklandJuice;
+  return totalPureFruitJuice / totalJuice;
 };
 
 //DO NOT EDIT BELOW THIS LINE//
