@@ -49,11 +49,16 @@ const CounterCollection = {
 const Presenter = {
   insertCounterComponent: function(newCountId){
     console.log(`insert counter component #${newCountId}`);
-    // Your Code Here
+    var newCounter = document.createElement('div');
+    newCounter.classList.add('counter');
+    newCounter.setAttribute('data-index', newCountId);
+    newCounter.innerHTML = "<h3>Count: <span>0</span></h3><button class='increment'> + 1 </button>";
+    newCounter.onclick = AppController.onClickIncrement;
+    document.getElementById('counter-list').appendChild(newCounter);
   },
   refreshCounterComponent: function(countId){
     console.log(`refresh counter component #${countId}`);
-    // Your Code Here
+    console.log(event);
   },
   removeCounterComponent: function(countId){             // REACH
     console.log(`remove counter component #${countId}`);
@@ -64,10 +69,10 @@ const Presenter = {
 // Top-Level Application Control //
 const AppController = {
   onClickNewCounter: function(event){
-    // Your Code Here
+    Presenter.insertCounterComponent(CounterCollection.createCounter());
   },
   onClickIncrement: function(event){
-    // Your Code Here
+    Presenter.refreshCounterComponent(CounterCollection.incrementCounter(parseInt(this.getAttribute('data-index'))));
   },
   onClickDelete: function(event){                           // REACH
     // Your Code Here
