@@ -1,42 +1,34 @@
 /* packages */
-var path        = require('path');
-var logger      = require('morgan');
-var express     = require('express');
-var hbs         = require('hbs');
+const path = require('path');
+const logger = require('morgan');
+const express = require('express');
+const hbs = require('hbs');
+
 /* app settings*/
-var app         = express();
-var port        = process.env.PORT || 3000;
+const app = express();
+const port = process.env.PORT || 3000;
+
 /* set up the application params*/
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 // log
-app.use( logger('dev'));
+app.use(logger('dev'));
 
 /*Views*/
 app.set('view engine', 'hbs');
 
 /* HOME */
-app.get('/', function(req,res) {
+app.get('/', (req,res) => {
   res.send('This is our Home Page');
 });
 
-/* INDEX TODOS */
-app.get('/todos', function(req,res) {
-  var seededTodos = [
-    {
-      description: "get beer",
-      urgent: true
-    }, {
-      description: "dry cleaning",
-      urgent: false
-    }
-  ];
-
-  res.render('todos/index', {
-    todos: seededTodos
-  });
-});
+let todosController = require(__dirname + '/controllers/todos_controller.js');
+app.use('/todos', todosController);
 
 // Start server
-app.listen(port, function() {
+app.listen(port, () => {
   console.info('Server Up -- Ready to serve hot todos on port', port,"//", new Date());
 });
