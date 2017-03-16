@@ -533,7 +533,7 @@ Finish fleshing out your form with the code above.
 
 #### Server Side
 
-Some of the the `controllers/todos.js` (specifically an INDEX route to show all of our todos, which we're storing in an array and our server/express configuration) is already written for you in the `starter-code`, we should walk through it to reiterate how it works.
+Some of the `controllers/todos.js` (specifically an INDEX route to show all of our todos, which we're storing in an array and our server/express configuration) is already written for you in the `starter-code`, we should walk through it to reiterate how it works.
 
 ```javascript
 // controllers/todos.js
@@ -793,8 +793,7 @@ Why do we need to redirect after a `.post` action?
 
 2. Add a nav bar to your layout view with links to your INDEX (`/todos`) and NEW(`/todos/new`) routes. For example:
 
-
-       ![](https://i.imgur.com/32xDLQF.png)
+    ![](https://i.imgur.com/32xDLQF.png)
 
 3. Make each todo on the INDEX page clickable (hint: use anchor tags) so that each individual todo, when clicked, will link to it's correct show page (like the image above).
 
