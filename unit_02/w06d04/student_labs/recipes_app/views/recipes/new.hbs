@@ -1,0 +1,20 @@
+<h1>New Recipe</h1>
+<form method="post" action="/recipes/">
+  <label for="recipe-title">Title: </label>
+  <input class="form-control" id="recipe-title" type="text" name="title" value=""><br>
+
+  <label for="recipe-imageUrl">Image Url: </label>
+  <input class="form-control" id="recipe-imageUrl" type="url" name="imageUrl" value=""><br>
+  <label for="veggie">Vegetarian</label>
+  <div class="radio">
+    <label>
+      <input type="radio" name="veggie" value="true" checked> True
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="veggie" value="false"> False
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
