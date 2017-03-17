@@ -1,0 +1,7 @@
+<h1>Todonts</h1>
+<ul>
+  {{#each todonts}}
+    <li><a href="/todonts/{{@index}}">{{description}}</a></li>
+  {{/each}}
+</ul>
+<a href="/todonts/new" type="button" name="button">New todont</a>

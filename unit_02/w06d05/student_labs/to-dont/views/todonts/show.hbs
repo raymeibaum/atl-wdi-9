@@ -1,0 +1,7 @@
+<h1>{{todont.description}}</h1>
+<h3>Urgent: {{todont.urgent}}</h3>
+<form action="/todonts/{{id}}?_method=DELETE" method="post">
+  <a class="btn btn-primary" href="/todonts/">Back</a>
+  <a class="btn btn-default" href="/todonts/{{id}}/edit">Edit</a>
+  <input class="btn btn-danger" type="submit" value="Delete"/>
+</form>
