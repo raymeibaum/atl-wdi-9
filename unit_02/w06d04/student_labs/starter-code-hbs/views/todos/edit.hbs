@@ -1,0 +1,8 @@
+<h1>Edit Todo</h1>
+<form action="/todos/{{id}}?_method=PUT" method="POST">
+  <label for="todo-description">Todo: </label>
+  <input id="todo-desciption" type="text" name="description" value="{{description}}" placeholder="Enter a todo"><br>
+  <label for="urgent">urgent:</label>
+  <input type="text" name="urgent" value="{{urgent}}">
+  <input type="submit" name="" value="Submit changes">
+</form>

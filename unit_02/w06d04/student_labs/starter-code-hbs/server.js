@@ -1,26 +1,18 @@
-/* packages */
-const path = require('path');
-const logger = require('morgan');
 const express = require('express');
-const hbs = require('hbs');
-
-/* app settings*/
 const app = express();
-const port = process.env.PORT || 3000;
 
-/* set up the application params*/
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// log
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
+const logger = require('morgan');
 app.use(logger('dev'));
 
-/*Views*/
+const hbs = require('hbs');
 app.set('view engine', 'hbs');
 
-/* HOME */
 app.get('/', (req,res) => {
   res.send('This is our Home Page');
 });
@@ -28,7 +20,5 @@ app.get('/', (req,res) => {
 let todosController = require(__dirname + '/controllers/todos_controller.js');
 app.use('/todos', todosController);
 
-// Start server
-app.listen(port, () => {
-  console.info('Server Up -- Ready to serve hot todos on port', port,"//", new Date());
-});
+const port = process.env.PORT || 3000;
+app.listen(port, console.info('Server Up -- Ready to serve hot todos on port', port,"//", new Date()));
