@@ -1,0 +1,12 @@
+<h1>{{pirate.name}}</h1>
+<ul class="list-unstyled">
+  <li><strong>Birthplace:</strong> {{pirate.birthplace}}</li>
+  <li><strong>Death year:</strong> {{pirate.death_year}}</li>
+  <li><strong>Based:</strong> {{pirate.base}}</li>
+  <li><strong>Nickname:</strong> {{pirate.nickname}}</li>
+</ul>
+<form action="/pirates/{{id}}?_method=DELETE" method="post">
+  <a class="btn btn-primary" href="/pirates/">Back</a>
+  <a class="btn btn-default" href="/pirates/{{id}}/edit">Edit</a>
+  <input class="btn btn-danger" type="submit" value="Delete"/>
+</form>

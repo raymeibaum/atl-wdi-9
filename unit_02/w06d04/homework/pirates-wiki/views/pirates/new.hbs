@@ -1,19 +1,25 @@
 <h1>New Pirate</h1>
 <form method="post" action="/pirates/">
-  <label for="pirate-name">Name: </label>
-  <input id="pirate-name" type="text" name="name" value=""><br>
-
-  <label for="pirate-birthplace">Birthplace: </label>
-  <input id="pirate-birthplace" type="text" name="birthplace" value=""><br>
-
-  <label for="pirate-death-year">Death year: </label>
-  <input id="pirate-death-year" type="number" name="death_year" value=""><br>
-
-  <label for="pirate-based">Based: </label>
-  <input id="pirate-based" type="text" name="base" value=""><br>
-
-  <label for="pirate-nickname">Nickname: </label>
-  <input id="pirate-nickname" type="text" name="nickname" value=""><br>
-
-  <button type="submit" name="button">Submit</button>
+  <div class="form-group">
+    <label for="pirate-name">Name</label>
+    <input id="pirate-name" class="form-control" type="text" name="name" value="" required>
+  </div>
+  <div class="form-group">
+    <label for="pirate-birthplace">Birthplace</label>
+    <input id="pirate-birthplace" class="form-control" type="text" name="birthplace" value="" required>
+  </div>
+  <div class="form-group">
+    <label for="pirate-death-year">Death year</label>
+    <input id="pirate-death-year" class="form-control" type="number" name="death_year" value="" required>
+  </div>
+  <div class="form-group">
+    <label for="pirate-based">Based</label>
+    <input id="pirate-based" class="form-control" type="text" name="base" value="" required>
+  </div>
+  <div class="form-group">
+    <label for="pirate-nickname">Nickname: </label>
+    <input id="pirate-nickname" class="form-control" type="text" name="nickname" value="" required>
+  </div>
+  <a class="btn btn-default" href="/pirates">Cancel</a>
+  <button class="btn btn-success" type="submit" name="button">Submit</button>
 </form>

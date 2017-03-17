@@ -1,19 +1,25 @@
 const express = require('express');
-const hbs = require('hbs');
-
 const app = express();
-const port = process.env.PORT || 3000;
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
+const hbs = require('hbs');
 app.set('view engine', 'hbs');
+app.use(express.static(__dirname + '/public'));
+
+const logger = require('morgan');
+app.use(logger('dev'));
 
 app.get('/', (req, res) => {
-  res.send("Welcome. Check out /pirates")
-})
+  res.redirect('/pirates/');
+});
 
 var piratesController = require(__dirname + '/controllers/pirates_controller.js');
 app.use('/pirates', piratesController);
 
-app.listen(port);
+const port = process.env.PORT || 3000;
+app.listen(port, console.info(`Server listening on port: ${port}.`));
