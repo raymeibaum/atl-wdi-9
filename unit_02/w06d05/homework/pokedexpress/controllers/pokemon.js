@@ -1,63 +1,67 @@
-//***************************
-// REQUIREMENTS
-//***************************
-// Set up your express dependency here:
+const express = require('express');
+const router = express.Router();
+const pokemon = require('../models/poke_array.js')
 
-// Set express Router to a variable called router:
+router.get('/', (req, res) => {
+  res.render('pokemon/index.hbs', {
+    pokemon: pokemon
+  });
+});
 
-// Let's export this router file at the bottom of the page:
-// (Scroll to bottom to Exports)
+router.post('/', (req, res) => {
+  pokemon.push({
+    id: req.body.id,
+    name: req.body.name,
+    img: req.body.img,
+    type: req.body.type.split(' '),
+    stats: {
+      hp: req.body.hp,
+      attack: req.body.attack,
+      defense: req.body.defense,
+      speed: req.body.speed,
+    },
+    misc: {
+      classification: req.body.classification
+    }
+  });
+  res.redirect(`/pokemon/${pokemon.length - 1}`);
+});
 
-// Require the poke_array.js file here from models.
-// Save it to a variable called data:
+router.get('/new', (req, res) => {
+  res.render('pokemon/new.hbs');
+});
 
+router.get('/:id', (req, res) => {
+  res.render('pokemon/show.hbs', {
+    pokemon: pokemon[req.params.id],
+    id: req.params.id
+  });
+});
 
+router.put('/:id', (req, res) => {
+  let selectedPokemon = pokemon[req.params.id];
 
+  selectedPokemon.id = req.body.id;
+  selectedPokemon.name = req.body.name;
+  selectedPokemon.type = req.body.type.split(' ');
+  selectedPokemon.stats.hp = req.body.hp;
+  selectedPokemon.stats.attack = req.body.attack;
+  selectedPokemon.stats.defense = req.body.defense;
+  selectedPokemon.stats.speed = req.body.speed;
 
-//***************************
-// READ
-//***************************
-// Note: All the routes below can be accessed at `localhost:3000/pokemon` + `resource`
-// Make a GET route '/' that will render an index page of all pokemon images
+  res.redirect(`/pokemon/${req.params.id}`);
+});
 
+router.delete('/:id', (req, res) => {
+  pokemon.splice(req.params.id, 1);
+  res.redirect('/pokemon');
+});
 
+router.get('/:id/edit', (req, res) => {
+  res.render('pokemon/edit.hbs', {
+    pokemon: pokemon[req.params.id],
+    id: req.params.id
+  });
+});
 
-
-
-// Make a GET route '/index/:index' that will render the Pokemon's show page at that :index
-//
-// Example: a user goes to 'localhost:3000/pokemon/index/0' in the browser and data for Bulbasaur (the pokemon at index 0) will be displayed.
-
-
-
-
-// Make a GET route '/new' that will simply render a form to create a new Pokemon
-
-
-
-
-
-
-
-//***************************
-// CREATE
-//***************************
-//make a POST route '/' to create a New Pokemon
-
-
-//***************************
-// UPDATE
-//***************************
-
-//***************************
-// DELETE
-//***************************
-//make a DELETE route '/:index' that will delete the Pokemon at this index.
-
-
-
-//***************************
-// EXPORTS
-//***************************
-// use module.exports to export router:
-// this makes the scripts on this page accessible by other files that "require" this file. Without exporting, the code in here just sits in here, alone.
+module.exports = router;

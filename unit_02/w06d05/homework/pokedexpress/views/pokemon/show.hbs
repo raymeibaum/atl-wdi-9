@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-sm-4">
+        <img class="img-responsive pokemon-portrait" src="{{pokemon.img}}" alt="{{pokemon.name}}">
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header">
+            <h1>{{pokemon.id}} {{pokemon.name}} <small>{{pokemon.misc.classification}}</small></h1>
+        </div>
+        <ul class="list-inline">
+            <li><strong>type:</strong></li>
+            {{#each pokemon.type}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        <h3>Stats</h3>
+        <ul class="list-unstyled">
+            <li><strong>hp: </strong>{{pokemon.stats.hp}}</li>
+            <li><strong>attack: </strong>{{pokemon.stats.attack}}</li>
+            <li><strong>defense: </strong>{{pokemon.stats.defense}}</li>
+            <li><strong>speed: </strong>{{pokemon.stats.speed}}</li>
+        </ul>
+        <form action="/pokemon/{{id}}?_method=DELETE" method="post">
+            <a class="btn btn-default" href="/pokemon/{{id}}/edit">Edit</a>
+            <input class="btn btn-danger" type="submit" value="Delete" />
+        </form>
+    </div>
+</div>

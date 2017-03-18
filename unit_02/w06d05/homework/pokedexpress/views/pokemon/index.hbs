@@ -1,0 +1,15 @@
+<h1>Index of Pokémon</h1>
+<div class="row">
+  {{#each pokemon}}
+  <div class="col-xs-2 pokemon-square">
+    <a href="/pokemon/{{@index}}">
+      <div class="pokemon-img">
+        <img class="img-responsive pokemon-img" src="{{img}}" alt="{{name}}">
+      </div>
+      <div class="pokemon-title">
+        <h5 class="text-center">{{name}}</h5>
+      </div>
+    </a>
+  </div>
+  {{/each}}
+</div>

@@ -1,0 +1,20 @@
+body {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+img {
+    margin: 0 auto;
+}
+div.pokemon-square {
+  margin: 20px;
+  height: 125px;
+}
+div.pokemon-img {
+  height: 100px;
+}
+div.pokemon-img img {
+  height: 100%;
+}
+img.pokemon-portrait {
+  margin-top: 40px;
+}

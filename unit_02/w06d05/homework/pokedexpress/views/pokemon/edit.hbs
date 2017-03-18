@@ -1,0 +1,41 @@
+<h1>Edit Pokémon</h1>
+<form action="/pokemon/{{id}}?_method=PUT" method="POST">
+  <div class="form-group">
+    <label for="pokemon-id">Id</label>
+    <input id="pokemon-id" class="form-control" type="number" name="id" value="{{pokemon.id}}" required>
+  </div>
+  <div class="form-group">
+    <label for="pokemon-name">Name</label>
+    <input id="pokemon-name" class="form-control" type="text" name="name" value="{{pokemon.name}}" required>
+  </div>
+  <div class="form-group">
+    <label for="pokemon-type">Type</label>
+    <input id="pokemon-type" class="form-control" type="text" name="type" value="{{#each pokemon.type}}{{this}} {{/each}}" required>
+  </div>
+  <div class="form-group">
+    <label for="pokemon-hp">Hp</label>
+    <input id="pokemon-hp" class="form-control" type="number" name="hp" value="{{pokemon.stats.hp}}" required>
+  </div>
+  <div class="form-group">
+    <label for="pokemon-attack">Attack</label>
+    <input id="pokemon-attack" class="form-control" type="number" name="attack" value="{{pokemon.stats.attack}}" required>
+  </div>
+  <div class="form-group">
+    <label for="pokemon-defense">Defense</label>
+    <input id="pokemon-defense" class="form-control" type="number" name="defense" value="{{pokemon.stats.defense}}" required>
+  </div>
+  <div class="form-group">
+    <label for="pokemon-speed">Speed</label>
+    <input id="pokemon-speed" class="form-control" type="number" name="speed" value="{{pokemon.stats.speed}}" required>
+  </div>
+  <div class="form-group">
+    <label for="pokemon-classification">Classification</label>
+    <input id="pokemon-classification" class="form-control" type="text" name="classification" value="{{pokemon.misc.classification}}" required>
+  </div>
+  <div class="form-group">
+    <label for="pokemon-img">Image URL</label>
+    <input id="pokemon-img" class="form-control" type="url" name="img" value="{{pokemon.img}}" required>
+  </div>
+  <a class="btn btn-default" href="/pokemon">Cancel</a>
+  <button class="btn btn-success" type="submit" name="button">Submit</button>
+</form>
