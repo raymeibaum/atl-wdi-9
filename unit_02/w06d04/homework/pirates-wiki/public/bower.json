@@ -1,0 +1,20 @@
+{
+  "name": "pirates_crud_part_one_solution",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Ray Meibaum <rmeibaum@me.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/raymeibaum/atl-wdi-9",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
