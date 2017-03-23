@@ -1,21 +1,32 @@
 // Standard stuff
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
 
+const hbs = require('hbs');
+app.set('view engine', 'hbs');
+
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var usersController = require("./controllers/usersController.js");
+const usersController = require("./controllers/usersController.js");
 app.use('/users', usersController);
 
+const itemsController = require("./controllers/itemsController.js");
+app.use('/users/:userId/items', itemsController);
+
+const projectIdeasController = require("./controllers/projectIdeasController.js");
+app.use('/users/:userId/project-ideas', projectIdeasController);
+
 // Mongoose stuff
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/express-mongoose-lesson-starter');
 
-// Now that we're connected, let's save that connection to the database in a variable.
-var db = mongoose.connection;
+// Now that we're connected, let's save that connection to the database in a constiable.
+const db = mongoose.connection;
 
 // Will log an error if db can't connect to MongoDB
 db.on('error', function(err){
