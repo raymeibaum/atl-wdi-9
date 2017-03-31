@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html ng-app="storeApp">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/todosController.js"></script>
-  </head>
-  <body>
-    {{'I ' + 'am ' + 'a ' + 'working ' + 'Angular.js ' + 'app!' }}
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.3/angular.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/productsController.js"></script>
+  <script src="js/reviewsController.js"></script>
+</head>
+
+<body ng-controller="ProductsController as productsCtrl">
+  <div ng-controller="ReviewsController as reviewsCtrl">
+    <h3>Displaying {{productsCtrl.products.length}} products across {{reviewsCtrl.productCategories.length}} categories.</h3>
+    <strong>Categories</strong>
+    <ul>
+      <li ng-repeat="category in reviewsCtrl.productCategories">{{category}}</li>
+    </ul>
+  </div>
+  <strong>Products</strong>
+  <ul>
+    <li ng-repeat="product in productsCtrl.products">{{product.name}} | Price: {{product.price | currency}} | Date Added: {{product.dateAdded | date}}</li>
+  </ul>
+<strong>Add Product</strong>
+  <form ng-submit="productsCtrl.addProduct()">
+    <label for="newproduct-name">Name</label>
+    <input type="text" id="newproduct-name" ng-model="productsCtrl.newProduct.name">
+    <label for="newproduct-price">Price</label>
+    <input type="text" id="newproduct-price" ng-model="productsCtrl.newProduct.price">
+    <label for="newproduct-date-added">Date Added</label>
+    <input type="date" id="newproduct-date-added" ng-model="productsCtrl.newProduct.dateAdded">
+    <button type="submit">Submit</button>
+  </form>
+</body>
+
 </html>
