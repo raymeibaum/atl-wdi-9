@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Infamous Criminals</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.5.7/angular-messages.min.js"></script>
   <script src="js/app.js"></script>
   <script src="js/criminalsController.js"></script>
   <script src="js/criminalsService.js"></script>
@@ -22,26 +23,50 @@
     </ul>
 
 
-    <form ng-submit="criminals.addCriminal()" id="newCriminal">
+    <form ng-submit="criminals.addCriminal()" name="newCriminal" id="newCriminal" novalidate>
       <div>
         <label for="newCriminal-name">Name:</label>
-        <input type="text" id="newCriminal-name" ng-model="criminals.newCriminal.name" placeholder="Prof. Moriarty">
+        <input type="text"
+               id="newCriminal-name"
+               name="name"
+               ng-model="criminals.newCriminal.name"
+               placeholder="Prof. Moriarty"
+               required>
+        <div class="error-messages" ng-messages="newCriminal.name.$error">
+          <div ng-message="required">Must enter a name before proceeding</div>
+        </div>
       </div>
       <div>
         <label for="newCriminal-location">Location:</label>
-        <input type="text" id="newCriminal-location" ng-model="criminals.newCriminal.location" placeholder="Reichenbach Falls, CH">
+        <input type="text"
+               id="newCriminal-location"
+               name="location"
+               ng-model="criminals.newCriminal.location"
+               placeholder="Reichenbach Falls, CH"
+               required>
+        <div class="error-messages" ng-messages="newCriminal.location.$error">
+          <div ng-message="required">Must enter a location before proceeding</div>
+        </div>
       </div>
       <div>
         <label for="newCriminal-status">Status:</label>
-        <select id="newCriminal-status" ng-model='criminals.newCriminal.status'>
+        <select id="newCriminal-status"
+                ng-model='criminals.newCriminal.status'
+                name="status"
+                required>
           <option value="" disabled>- - Please Select One - -</option>
           <option value="Alive">Alive</option>
           <option value="Dead">Dead</option>
           <option value="Unknown" selected>Unknown</option>
         </select>
+        <div class="error-messages" ng-messages="newCriminal.status.$error">
+          <div ng-message="required">Must choose a status before proceeding.</div>
+        </div>
       </div>
       <div>
-        <input type="submit" value="Add Criminal">
+        <input type="submit"
+               value="Add Criminal"
+               ng-disabled="newCriminal.$invalid">
       </div>
     </form>
 
