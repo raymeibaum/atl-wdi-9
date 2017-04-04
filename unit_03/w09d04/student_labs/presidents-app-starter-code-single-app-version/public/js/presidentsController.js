@@ -1,19 +1,43 @@
 angular.module('ThePresidentsApp')
   .controller('PresidentsController', PresidentsController);
 
-function PresidentsController(){
-  this.all = [
-    {name: 'George Washington', start: 1789, end: 1797 },
-    {name: 'John Adams', start: 1797, end: 1801 },
-    {name: 'Thomas Jefferson', start: 1801, end: 1809 },
-    {name: 'James Madison', start: 1809, end: 1817 },
-    {name: 'Joshua Quincy Kushner', start: 2021, end: 2029 },
-  ];
-  this.addPresident = addPresident;
-  this.newPresident = {};
+PresidentsController.$inject = ['$http'];
+
+function PresidentsController($http){
+  vm = this;
+
+  vm.addPresident = addPresident;
+  vm.all = [];
+  vm.newPresident = {};
+  vm.removePresident = removePresident;
+
+  activate();
+
+  function activate() {
+    getAllPresidents();
+  }
 
   function addPresident(){
-    this.all.push(this.newPresident);
-    this.newPresident = {};
+    $http
+      .post('/presidents', vm.newPresident)
+      .then(function pushNewPresident(response) {
+        vm.all.push(response.data.president);
+        vm.newPresident = {};
+      });
+  }
+
+
+  function getAllPresidents() {
+    $http
+      .get('/presidents')
+      .then(function setAll(response) {
+        vm.all = response.data.presidents;
+      });
+  }
+
+  function removePresident(id) {
+    $http
+      .delete('/presidents/' + id)
+      .then(getAllPresidents());
   }
 }
