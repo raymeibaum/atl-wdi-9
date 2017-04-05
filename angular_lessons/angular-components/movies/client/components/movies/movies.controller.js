@@ -13,3 +13,5 @@ function MoviesController() {
         { title: 'The Bicycle Thief', year: 1948 }
     ]
 }
+
+module.exports = MoviesController;
