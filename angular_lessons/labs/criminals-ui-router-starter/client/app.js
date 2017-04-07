@@ -7,6 +7,7 @@ angular
 
 uiRouterSetup.$inject = ['$stateProvider', '$urlRouterProvider'];
 function uiRouterSetup($stateProvider, $urlRouterProvider) {
+<<<<<<< HEAD
   $stateProvider
     .state('home', {
       url: '/',
@@ -27,8 +28,7 @@ function uiRouterSetup($stateProvider, $urlRouterProvider) {
 		.state('criminalsShow', {
 			url: '/criminals/:criminalId',
 			template: '<criminals-show></criminals-show>'
-		})
+		});
 
-
-  $urlRouterProvider.otherwise('/');
+	$urlRouterProvider.otherwise('/');
 }
