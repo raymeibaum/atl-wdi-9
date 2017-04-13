@@ -15,7 +15,7 @@ competencies: Relational Databases
 - What are JOIN tables?
 - Why do we need JOINS?
 - INNER JOIN
-- LEFT, RIGHT, and OUTER JOINs
+- LEFT and RIGHT JOINs
 
 
 ### Preparation
@@ -39,19 +39,19 @@ CREATE DATABASE joins_example_db;
 \c joins_example_db
 
 CREATE TABLE customers (
-	id SERIAL PRIMARY KEY,
-	name varchar(255),
-  address varchar(255),
-  city varchar(255),
-  state varchar(255),
-  zip integer
+id SERIAL PRIMARY KEY,
+name varchar(255),
+address varchar(255),
+city varchar(255),
+state varchar(255),
+zip integer
 );
 
 CREATE TABLE orders (
-	id SERIAL PRIMARY KEY,
-  customer_id INTEGER REFERENCES customers,
-	amount money,
-	order_date date
+id SERIAL PRIMARY KEY,
+customer_id INTEGER REFERENCES customers,
+amount money,
+order_date date
 );
 ```
 
@@ -74,12 +74,12 @@ INSERT INTO customers (name, address, city, state, zip) VALUES ('Holland St', '9
 
 
 INSERT INTO orders (customer_id, amount, order_date) VALUES (1, 111.51, '01/5/2016');
-INSERT INTO orders (customer_id, amount, order_date) VALUES (2, 151.88, '12/22/2015');
+INSERT INTO orders (customer_id, amount, order_date) VALUES (2, 151.88, '07/13/2015');
 INSERT INTO orders (customer_id, amount, order_date) VALUES (3, 78.50, '05/05/2014');
 INSERT INTO orders (customer_id, amount, order_date) VALUES (1, 124.00, '07/13/2015');
-INSERT INTO orders (customer_id, amount, order_date) VALUES (2, 65.50, '02/15/2014');
+INSERT INTO orders (customer_id, amount, order_date) VALUES (2, 65.50, '09/16/2014');
 INSERT INTO orders (customer_id, amount, order_date) VALUES (1, 25.50, '09/16/2014');
-INSERT INTO orders (customer_id, amount, order_date) VALUES (2, 14.40, '03/03/2014');
+INSERT INTO orders (customer_id, amount, order_date) VALUES (2, 14.40, '09/16/2014');
 INSERT INTO orders (customer_id, amount, order_date) VALUES (1, 234.56, '10/08/2015');
 ```
 ---
@@ -117,8 +117,7 @@ And then we also want to see that customers orders specifically `amount` and `or
 ```sql
 SELECT name, zip, amount, order_date
 FROM customers
-JOIN orders
-  ON customers.id = orders.customer_id
+JOIN orders ON customers.id = orders.customer_id;
 ```
 
 `JOIN` allow us to smoosh to tables together. We use `ON` to create JOINED rows specifically where the customer_id (foreign_key) and the primary key of the customer are the same.
@@ -128,8 +127,7 @@ This returns all of the customers so let's add our WHERE clause back in
 ```sql
 SELECT name, zip, amount, order_date
 FROM customers
-JOIN orders
-  ON customers.id = orders.customer_id
+JOIN orders ON customers.id = orders.customer_id
 WHERE customer_id = 1;
 ```
 
@@ -138,8 +136,7 @@ The default behavior of the JOIN statement is to make an INNER JOIN. You could r
 ```sql
 SELECT name, zip, amount, order_date
 FROM customers
-INNER JOIN orders
-  ON customers.id = orders.customer_id
+INNER JOIN orders ON customers.id = orders.customer_id
 WHERE customer_id = 1;
 ```
 
@@ -164,8 +161,7 @@ EXERCISE:
   <!-- ```sql
   SELECT name, address, city, state, zip, amount, order_date
   FROM customers
-  JOIN orders
-    ON customers.id = orders.customer_id
+  JOIN orders ON customers.id = orders.customer_id
   WHERE customer_id = 2;
   ``` -->
 2. Write a JOIN query that sums all the orders as order_total of `Grayce Mission` and returns a table with the `name` and `order_total`
@@ -178,8 +174,7 @@ EXERCISE:
   <!-- ```sql
   SELECT customers.name, SUM(Orders.amount) as total
   FROM customers
-  JOIN orders
-    ON customers.id = orders.customer_id
+  JOIN orders ON customers.id = orders.customer_id
   WHERE customers.id = 2 GROUP BY customers.name
   ``` -->
 3. Write a Join query that returns all of the users order summed as total:
@@ -194,43 +189,47 @@ EXERCISE:
   <!-- ```sql
   SELECT Customers.name, SUM(Orders.amount) as total
   FROM customers
-  JOIN orders
-    ON customers.id = orders.customer_id
+  JOIN orders ON customers.id = orders.customer_id
   GROUP BY Customers.name;
   ``` -->
 
 
 There are several other forms of JOINS that are much less common
 
-
-*OUTER JOIN*
-An outer join is the inverse of the inner join. It only returns those records not in “left” table and the "right" table.
-
-“Give me the records that DON’T have a match.”
-
-In programming logic – think in terms of NOT AND.
-
 *LEFT JOIN*
-A left join returns all the records in the “left” table (Table 1) whether they have a match in the right table or not.
+
+```
+SELECT name, zip, amount, order_date
+FROM customers
+LEFT JOIN orders ON customers.id = orders.customer_id;
+```
+A left join returns all the records in the “left” table (customers) whether they have a match in the "right" (orders) table or not.
 
 If, however, they do have a match in the right table – give me the “matching” data from the right table as well. If not – fill in the holes with null.
 
-*LEFT OUTER JOIN*
-A left outer join combines the ideas behind a left join and an outer join. Basically – if you use a left outer join you will get the records in the left table that DO NOT have a match in the right table.
+
+*RIGHT JOIN*
+
+```
+SELECT name, zip, amount, order_date
+FROM customers
+RIGHT JOIN orders ON customers.id = orders.customer_id;
+```
+
+Returns all records in the "right" table (orders) whether they have a match in the "left" (customers) table or not.
 
 
 ## GROUP BY
-Suppose for each employee, we want the number of employees they manage, or for each library, we want the number of distinct books they stock.  We need to use GROUP BY.
+Suppose we want to know the total amount purchased on each order_date provided in the orders table.  We would use `GROUP BY` to sum the amounts for each date.
 
 ```
-SELECT COUNT(e.id) AS reports_count, m.id, m.name
-  FROM employees AS e
-  INNER JOIN employees AS m
-    ON e.manager_id=m.id
-  GROUP BY e.manager_id, m.id, m.name;
+SELECT order_date, SUM(amount) 
+FROM orders 
+GROUP BY order_date
+ORDER BY order_date;
 ```
 
-This builds the join table from employees to employees, then aggregates the rows which have the same e.manager_id, m.id, and m.name.  Then it selects the number of rows aggregated and the id and name of the manager.
+This query will aggregate the total amount for each order_date.
 
 ## Further Reading
 Some nice visuals of SQL Joins:
@@ -243,6 +242,8 @@ Some nice visuals of SQL Joins:
 
 There are actually a number of ways to join multiple tables with `JOIN`, if
 you're really curious, check out this article:
+
+![All the joins in the world](https://www.codeproject.com/KB/database/Visual_SQL_Joins/Visual_SQL_JOINS_V2.png)
 
 [A visual explanation of SQL Joins](http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/)
 
