@@ -4,13 +4,13 @@ TRUNCATE TABLE AUTHORS;
 ALTER SEQUENCE books_id_seq RESTART WITH 1;
 ALTER SEQUENCE authors_id_seq RESTART WITH 1;
 
-INSERT INTO authors(name, nationality, birth_year) VALUES ('Cao Xueqin',         'China', 1715);
-INSERT INTO authors(name, nationality, birth_year) VALUES ('J.K. Rowling',       'United Kingdom', 1965);
-INSERT INTO authors(name, nationality, birth_year) VALUES ('James Baldwin',      'United States of America', 1924);
-INSERT INTO authors(name, nationality, birth_year) VALUES ('Jorge Luis Borges',  'Argentina', 1899);
-INSERT INTO authors(name, nationality, birth_year) VALUES ('Haruki Murakami',    'Japan', 1949);
-INSERT INTO authors(name, nationality, birth_year) VALUES ('Milan Kundera',      'Czechoslovakia', 1929);
-INSERT INTO authors(name, nationality, birth_year) VALUES ('Albert Camus',       'France', 1913);
+INSERT INTO authors(name, nationality, birth_year) VALUES ('Cao Xueqin', 'China', 1715);
+INSERT INTO authors(name, nationality, birth_year) VALUES ('J.K. Rowling', 'United Kingdom', 1965);
+INSERT INTO authors(name, nationality, birth_year) VALUES ('James Baldwin', 'United States of America', 1924);
+INSERT INTO authors(name, nationality, birth_year) VALUES ('Jorge Luis Borges', 'Argentina', 1899);
+INSERT INTO authors(name, nationality, birth_year) VALUES ('Haruki Murakami', 'Japan', 1949);
+INSERT INTO authors(name, nationality, birth_year) VALUES ('Milan Kundera', 'Czechoslovakia', 1929);
+INSERT INTO authors(name, nationality, birth_year) VALUES ('Albert Camus', 'France', 1913);
 INSERT INTO authors(name, nationality, birth_year) VALUES ('George R.R. Martin', 'United States of America', 1945);
 
 -- Cao Xueqin
